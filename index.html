@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🚧 TuHoraYa.cl - En Desarrollo 🚀</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="logo.jpg" type="image/jpeg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="logo.jpg" as="image">
+</head>
+
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="logo.jpg" alt="Logo de TuHoraYa.cl" />
+    </div>
+
+    <div class="development-banner">
+      <p>Estamos en fase de desarrollo ⚙️</p>
+    </div>
+
+    <div class="content">
+      <h1>🩺 Muy pronto, agendar será más fácil con <span>TuHoraYa.cl</span></h1>
+      <p class="description">
+        Estamos construyendo una nueva experiencia de agendamiento médico. Rápido, centralizado y con clínicas de primer nivel.
+      </p>
+
+      <div class="cta">
+        <p class="highlight">🧠 ¿Y si te avisamos cuando agendar sea realmente fácil?</p>
+
+        <form id="notifyForm" class="notify-form" aria-label="Formulario de notificación">
+          <input
+            id="emailInput"
+            type="email"
+            name="email"
+            placeholder="Tu correo electrónico"
+            required
+            aria-required="true" />
+
+          <span id="errorMessage" class="error-message" style="display:none;">
+            Por favor, ingresa un correo válido.
+          </span>
+
+          <button type="submit">✅ Quiero saber cuando partan</button>
+        </form>
+
+        <p id="successMessage" class="success-message" role="alert" style="display:none;">
+          <span class="success-blue">🎉 ¡Gracias!</span><span class="success-question"> Ya eres </span><span class="success-gold">early adopter.</span>
+        </p>
+
+        <p class="social-text">Síguenos en redes sociales para recibir novedades:</p>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/tuhoraya.cl" target="_blank" class="link-uniforme">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" />
+            <span>@TuHoraYa.cl</span>
+          </a>
+        </div>
+
+        <p class="social-text">¿Tienes dudas o quieres saber más?</p>
+        <p class="contact">
+          📩 <a href="mailto:contacto@tuhoraya.cl" class="link-uniforme">contacto@tuhoraya.cl</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- === Script que envía el correo a Google Sheets ====================== -->
+  <script>
+    (function () {
+      /* Pega aquí la URL que te dio Apps Script */
+      const ENDPOINT = 'https://script.google.com/macros/s/AKfycbxxxxxxxxxxxxxxxxxxxx/exec';
+
+      /* Cambia este token por el mismo que uses en tu script del servidor  */
+      const SECRET   = 'tok3nFuerte2024';
+
+      const form           = document.getElementById('notifyForm');
+      const emailInput     = document.getElementById('emailInput');
+      const errorMessage   = document.getElementById('errorMessage');
+      const successMessage = document.getElementById('successMessage');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const email = emailInput.value.trim();
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!regex.test(email)) {
+          errorMessage.style.display = 'block';
+          return;
+        }
+        errorMessage.style.display = 'none';
+
+        try {
+          const res = await fetch(ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, token: SECRET })
+          });
+
+          if (!res.ok) throw new Error('error servidor');
+
+          form.style.display = 'none';
+          successMessage.style.display = 'block';
+        } catch (err) {
+          alert('Ups, no pudimos registrar tu correo. Intenta de nuevo más tarde.');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
+
+
+

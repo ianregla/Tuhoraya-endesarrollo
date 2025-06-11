@@ -1,0 +1,245 @@
+/* Reset y base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #2a72b5, #1f487e);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Contenedor principal */
+.container {
+  background: rgba(255, 255, 255, 0.96);
+  padding: 16px;
+  border-radius: 15px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  max-width: 400px;
+  width: 90vw;
+  max-height: 100vh;
+  overflow-y: auto;
+  animation: fadeIn 0.8s ease-in;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Logo centrado */
+.logo {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.logo img {
+  max-width: 120px;
+  height: auto;
+}
+
+/* Contenedor de contenido */
+.content {
+  text-align: center;
+}
+
+/* Banner de desarrollo */
+.development-banner {
+  background: #ffdb58;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 14px;
+  font-size: 0.9em;
+  text-align: center;
+}
+
+/* Título */
+h1 {
+  font-size: 1.4em;
+  color: #222;
+  margin-bottom: 8px;
+}
+h1 span {
+  color: #2a72b5;
+}
+
+/* Descripción */
+.description {
+  color: #444;
+  font-size: 0.95em;
+  margin-bottom: 14px;
+}
+
+/* CTA */
+.cta {
+  width: 100%;
+}
+.cta .highlight {
+  font-weight: bold;
+  font-size: 1em;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+/* Formulario de notificación */
+.notify-form {
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+.notify-form input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  width: 100%;
+  transition: border-color 0.3s ease, transform 0.2s ease;
+}
+.notify-form input:focus {
+  outline: 2px solid #1f487e;
+  outline-offset: 2px;
+  border-color: #1f487e;
+}
+.notify-form button {
+  background-color: #2a72b5;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+.notify-form button:focus {
+  outline: 2px solid #1f487e;
+  outline-offset: 2px;
+}
+.notify-form button:hover {
+  background-color: #1f487e;
+  transform: translateY(-2px);
+}
+
+/* Mensajes de error y éxito */
+.error-message {
+  color: #d9534f;
+  font-size: 0.85em;
+  margin-top: 4px;
+}
+
+/* Mensaje de éxito personalizado */
+.success-message {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Clases para colorear el mensaje de éxito */
+.success-blue {
+  color: #2a72b5;
+}
+.success-question {
+  color: #333;
+}
+.success-gold {
+  color: #ff9e3e;
+}
+
+/* Redes sociales */
+.social-text {
+  color: #222;
+  font-size: 0.9em;
+  margin-top: 8px;
+}
+.social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin: 6px 0;
+}
+.social-icons img {
+  width: 20px;
+  height: 20px;
+  filter: invert(24%) sepia(92%) saturate(2183%) hue-rotate(207deg) brightness(93%) contrast(90%);
+}
+.social-icons span {
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #2a72b5;
+}
+
+/* Contacto */
+.contact {
+  font-size: 0.9em;
+  color: #555;
+  margin-top: 4px;
+}
+
+/* Enlaces uniformes */
+.link-uniforme {
+  color: #2a72b5;
+  text-decoration: none;
+  font-weight: bold;
+}
+.link-uniforme:focus {
+  outline: 2px solid #1f487e;
+  outline-offset: 2px;
+}
+.link-uniforme:hover {
+  text-decoration: underline;
+}
+
+/* Móviles pequeños */
+@media screen and (max-width: 420px), screen and (max-height: 600px) {
+  .container {
+    padding: 14px;
+    max-height: 100vh;
+  }
+  h1 {
+    font-size: 1.25em;
+  }
+  .description,
+  .cta .highlight,
+  .social-text,
+  .contact {
+    font-size: 0.85em;
+  }
+  .notify-form input,
+  .notify-form button {
+    font-size: 0.9em;
+  }
+}
+
+/* Breakpoint para tablets intermedios */
+@media screen and (min-width: 421px) and (max-width: 768px) {
+  .container {
+    max-width: 350px;
+    padding: 18px;
+  }
+  h1 {
+    font-size: 1.45em;
+  }
+  .description, .cta .highlight, .social-text, .contact {
+    font-size: 0.9em;
+  }
+  .notify-form input, .notify-form button {
+    font-size: 0.95em;
+  }
+}
+
+
