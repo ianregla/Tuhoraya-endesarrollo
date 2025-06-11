@@ -73,10 +73,10 @@
   <script>
     (function () {
       /* Pega aquí la URL que te dio Apps Script */
-      const ENDPOINT = 'https://script.google.com/macros/s/AKfycbww6WRARWHUSxsxDDkZwNA_3y0DVYQcXdzNuoG7tQQ9x22Kb1rXXmr6qFq2TcZSsT4t/exec';
+      const ENDPOINT = 'https://script.google.com/macros/s/AKfycbyVRBOz7JA2X-ZfnX2i-M080hBzlBJnFtKKRDpGWHz9dxCWkRtvKfl1GdJeEcwfXCiK/exec';
 
       /* Cambia este token por el mismo que uses en tu script del servidor  */
-      const SECRET   = 'tok3nFuerte2024';
+      const SECRET = 'tok3nFuerte2024';
 
       const form           = document.getElementById('notifyForm');
       const emailInput     = document.getElementById('emailInput');
@@ -88,7 +88,6 @@
 
         const email = emailInput.value.trim();
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
         if (!regex.test(email)) {
           errorMessage.style.display = 'block';
           return;
@@ -96,8 +95,10 @@
         errorMessage.style.display = 'none';
 
         try {
+          // Agregamos explícitamente el mode: 'cors'
           const res = await fetch(ENDPOINT, {
             method: 'POST',
+            mode: 'cors', // Establecemos que se use el modo CORS
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, token: SECRET })
           });
@@ -114,6 +115,7 @@
   </script>
 </body>
 </html>
+
 
 
 
