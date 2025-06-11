@@ -52,7 +52,9 @@
         </form>
 
         <p id="successMessage" class="success-message" role="alert" style="display:none;">
-          <span class="success-blue">🎉 ¡Gracias!</span><span class="success-question"> Ya eres </span><span class="success-gold">early adopter.</span>
+          <span class="success-blue">🎉 ¡Gracias!</span>
+          <span class="success-question"> Ya eres </span>
+          <span class="success-gold">early adopter.</span>
         </p>
 
         <p class="social-text">Síguenos en redes sociales para recibir novedades:</p>
@@ -94,8 +96,8 @@
         const formData = new FormData(form);
 
         try {
-          // Enviar la sumisión vía AJAX a la misma URL del sitio (Netlify procesa esto)
-          const res = await fetch("/", {
+          // Enviar la sumisión vía AJAX a "/index.html" (Opción 2.A)
+          const res = await fetch("/index.html", {
             method: "POST",
             body: formData
           });
