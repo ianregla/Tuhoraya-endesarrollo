@@ -97,7 +97,7 @@
 
         try {
           // Enviar la sumisión vía AJAX a "/index.html" (Opción 2.A)
-          const res = await fetch("/index.html", {
+          const res = await fetch(window.location.pathname, {
             method: "POST",
             body: formData
           });
