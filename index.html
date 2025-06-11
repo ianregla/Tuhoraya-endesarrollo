@@ -71,31 +71,46 @@
     </div>
   </div>
 
-  <!-- Script para validar el correo y enviar el formulario nativamente (Netlify Forms) -->
+  <!-- Script para validar el correo y enviar el formulario vía AJAX (Netlify Forms) -->
   <script>
     (function () {
       const form = document.getElementById('notifyForm');
       const emailInput = document.getElementById('emailInput');
       const errorMessage = document.getElementById('errorMessage');
-      // La sumisión se realizará de forma nativa a Netlify Forms.
-      form.addEventListener('submit', function (e) {
+      const successMessage = document.getElementById('successMessage');
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();  // Prevenir la sumisión nativa
+
         const email = emailInput.value.trim();
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!regex.test(email)) {
-          e.preventDefault(); // Prevenir la sumisión si el correo no es válido
           errorMessage.style.display = 'block';
-        } else {
-          errorMessage.style.display = 'none';
-          // Se permite que el formulario se envíe normalmente (Netlify procesará el envío)
-          // Puedes agregar redirección o mensaje de éxito directamente desde Netlify, o personalizar aquí si lo deseas.
+          return;
+        }
+        errorMessage.style.display = 'none';
+
+        // Crear FormData a partir del formulario
+        const formData = new FormData(form);
+
+        try {
+          // Enviar la sumisión vía AJAX a la misma URL del sitio (Netlify procesa esto)
+          const res = await fetch("/", {
+            method: "POST",
+            body: formData
+          });
+          // Si la respuesta es exitosa, ocultamos el formulario y mostramos el mensaje de éxito.
+          if (res.ok) {
+            form.style.display = 'none';
+            successMessage.style.display = 'block';
+          } else {
+            throw new Error("Error del servidor");
+          }
+        } catch (err) {
+          alert("Ups, no pudimos registrar tu correo. Comunícate a contacto@tuhoraya.cl");
         }
       });
     })();
   </script>
 </body>
 </html>
-
-
-
-
-
