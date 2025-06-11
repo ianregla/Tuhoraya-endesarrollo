@@ -7,7 +7,7 @@
 
 html, body {
   height: 100%;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Roboto', sans-serif; /* Actualizado a Roboto */
   background: linear-gradient(135deg, #2a72b5, #1f487e);
   display: flex;
   justify-content: center;
