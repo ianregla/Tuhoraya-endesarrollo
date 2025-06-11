@@ -97,10 +97,12 @@
 
         try {
           // Enviar la sumisión vía AJAX a "/index.html" (Opción 2.A)
-          const res = await fetch("https://tuhoraya.cl/", {
+          const formAction = window.location.origin + window.location.pathname;
+          const res = await fetch(formAction, {
           method: "POST",
           body: formData
           });
+
 
           // Si la respuesta es exitosa, ocultamos el formulario y mostramos el mensaje de éxito.
           if (res.ok) {
